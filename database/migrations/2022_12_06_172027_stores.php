@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('stores', function (Blueprint $table) {
-              $table->bigIncrements('id');
-              $table->string('name');
-            $table->geometry('address');
-            $table->string('logo');
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('name');
+          $table->geometry('address');
+          $table->string('logo');
+          $table->timestamps();
 
-        });
+      });
     }
 
     /**
@@ -31,5 +31,6 @@ return new class extends Migration
     public function down()
     {
         Schema::drop('stores');
+
     }
 };

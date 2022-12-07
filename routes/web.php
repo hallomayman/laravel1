@@ -14,19 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::prefix('admin')->middleware(['auth','isAdmin'])->group (function() {
-    Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index']);
-}
-
-);
-
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -43,6 +30,18 @@ Route::get('contact-us', function () {
     return view('shope/contact-us');
 });
 
-//Auth::routes();
+Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('admin')->middleware(['auth','isAdmin'])->group (function() {
+    Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index']);
+
+    //Store Route
+    Route::get('store',[App\Http\Controllers\Admin\StoreController::class,'index']);
+    Route::get('store/create',[App\Http\Controllers\Admin\StoreController::class,'create']);
+    Route::post('stores',[App\Http\Controllers\Admin\StoreController::class,'store']);
+
+
+}
+
+);
